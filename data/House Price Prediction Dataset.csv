@@ -1,0 +1,85 @@
+# Model Card: House Price Prediction System
+
+## Model Overview
+
+This project builds a house price prediction system using supervised regression machine learning.
+
+### Objective
+Estimate the price of a property based on property characteristics.
+
+### Target Variable
+- Price
+
+### Features Used
+- Area
+- Bedrooms
+- Bathrooms
+- Floors
+- YearBuilt
+- Location
+- Condition
+- Garage
+
+### Excluded Features
+- Id
+
+## Data and Preprocessing
+
+The dataset is loaded with Pandas and cleaned before training.
+
+### Cleaning steps
+- Remove duplicate rows
+- Convert numeric fields to numeric type
+- Fill numeric missing values with median
+- Fill categorical missing values with most frequent value
+
+### Preprocessing pipeline
+- Numeric features:
+  - SimpleImputer(strategy="median")
+  - StandardScaler
+- Categorical features:
+  - SimpleImputer(strategy="most_frequent")
+  - OneHotEncoder(handle_unknown="ignore")
+
+## Models Trained
+
+- Linear Regression
+- Decision Tree Regressor
+- Random Forest Regressor
+- Gradient Boosting Regressor
+
+## Evaluation Metrics
+
+- MAE
+- MSE
+- RMSE
+- R²
+
+The best model is selected based on the highest R² value, with lower RMSE used as a tie-breaker.
+
+## Intended Use
+Estimate the market value of residential houses similar to the training data.
+
+## Limitations
+
+- Results depend on dataset quality and distribution.
+- Predictions are estimates, not guaranteed market values.
+- Out-of-distribution inputs may reduce reliability.
+
+## Model Artifacts
+
+- models/house_price_model.pkl
+- models/preprocessor.pkl
+- models/metrics.csv
+
+## Training Command
+
+```bash
+python train.py
+```
+
+## Application Run Command
+
+```bash
+streamlit run app.py
+```
